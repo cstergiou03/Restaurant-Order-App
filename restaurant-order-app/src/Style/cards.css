@@ -1,0 +1,42 @@
+
+.card-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: hsl(230, 20%, 35%);
+    width: 250px;
+    height: 300px;
+    border-radius: 20px;
+    margin: 1.5em;
+    box-shadow: 5px 8px 3px hsl(230, 20%, 10%);
+    color: aliceblue;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.card-container:hover{
+    box-shadow: 14px 12px 3px hsl(230, 20%, 12%);
+}
+
+.food-img{
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    width: 250px;
+    height: 120px;
+}
+
+.addToCard-button{
+    font-weight: bold;
+    font-size: 1rem;
+    color: aliceblue;
+    background-color: hsl(337, 29%, 49%);
+    padding: 7px;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+}
+
+.addToCard-button:hover{
+    background-color: hsl(337, 29%, 54%);
+    cursor: pointer;
+}

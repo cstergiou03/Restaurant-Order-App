@@ -1,0 +1,79 @@
+.order-box {
+    position: sticky;
+    top: 0;
+    width: 350px;
+    max-height: 450px;
+    background-color: hsl(230, 20%, 25%);
+    box-shadow: 5px 8px 3px hsl(230, 20%, 10%);
+    border-radius: 20px;
+    margin-top: 5em;
+    margin-right: 2em;
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.order-box:hover {
+    box-shadow: 10px 12px 3px hsl(230, 20%, 12%);
+}
+
+.order-button {
+    width: 110px;
+    height: 40px;
+    border-radius: 18px;
+    background-color: hsl(337, 29%, 49%);
+    color: aliceblue;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    outline: none;
+}
+
+.order-button:hover {
+    background-color: hsl(337, 29%, 54%);
+    cursor: pointer;
+}
+
+.place-order {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 1em;
+    width: 300px;
+}
+
+.total-price{
+    font-size: 1.2rem;
+    color: aliceblue;
+}
+
+.selected-items-box {
+    max-height: 364px; /* Ορίζει το μέγιστο ύψος */
+    overflow-y: auto; /* Προσθήκη κύλισης */
+}
+
+
+/* Καθορίζει το πλάτος του scroll bar */
+::-webkit-scrollbar {
+    width: 12px;
+}
+  
+/* Καθορίζει το χρώμα του background του scroll bar */
+::-webkit-scrollbar-track {
+    background: #f1f1f100;
+    border-radius: 8px;
+}
+  
+/* Καθορίζει το χρώμα της μπάρας του scroll bar */
+::-webkit-scrollbar-thumb {
+    background: hsl(0, 0%, 58%);
+    border-radius: 8px;
+}
+  
+/* Καθορίζει το χρώμα της μπάρας του scroll bar όταν γίνεται hover */
+::-webkit-scrollbar-thumb:hover {
+    background: hsl(0, 0%, 90%);
+}
+  

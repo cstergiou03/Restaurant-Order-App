@@ -1,0 +1,37 @@
+.selected-item{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    background-color: hsl(230, 20%, 50%);
+    color: aliceblue;
+    font-size: 1rem;
+    width: 300px;
+    height: 100px;
+    margin: 1em;
+    border-radius: 15px;
+}
+
+.discard-button{
+    height: 18px;
+    width: 18px;
+    border-radius: 25px;
+    outline: none;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.discard-button img{
+    height: 18px;
+    width: 18px;
+    border-radius: 25px;
+}
+
+.discard-button img:hover{
+    height: 19px;
+    width: 19px;
+    border-radius: 25px;
+    cursor: pointer;
+}
