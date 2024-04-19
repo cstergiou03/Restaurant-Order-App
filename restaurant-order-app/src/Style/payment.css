@@ -2,7 +2,7 @@
     position: sticky;
     top: 0;
     width: 350px;
-    max-height: 450px;
+    max-height: 470px;
     background-color: hsl(230, 20%, 25%);
     box-shadow: 5px 8px 3px hsl(230, 20%, 10%);
     border-radius: 20px;
@@ -50,8 +50,9 @@
 }
 
 .selected-items-box {
-    max-height: 364px; /* Ορίζει το μέγιστο ύψος */
-    overflow-y: auto; /* Προσθήκη κύλισης */
+    max-height: 364px;
+    overflow-y: auto;
+    margin: 0.5em;
 }
 
 
@@ -75,5 +76,18 @@
 /* Καθορίζει το χρώμα της μπάρας του scroll bar όταν γίνεται hover */
 ::-webkit-scrollbar-thumb:hover {
     background: hsl(0, 0%, 90%);
+}
+
+.order-head{
+    text-align: center;
+    background-color: hsl(337, 29%, 54%);
+    width: 200px;
+    height: 65px;
+    margin-top: 0.7em;
+    border-radius: 15px;
+}
+
+.order-head h2{
+    color: aliceblue;
 }
   

@@ -1,17 +1,36 @@
-import "../Style/selectedFood.css"
+import React from 'react';
+import "../Style/selectedFood.css";
 
-function SelectedFood(){
+function SelectedFood({ name, quantity, price, selectedItems, setSelectedItems }) {
 
+    const handleRemoveFromCart = () => {
+        const existingItemIndex = selectedItems.findIndex(item => item.name === name);
 
-    return(
-        <>
-            <div className="selected-item">
-                <h3>Spaghetti</h3>
-                <h3>Qty: 1</h3>
-                <h3>20$</h3>
-                <button className="discard-button"><img src="../src/assets/discard.png"/></button>
-            </div>
-        </>
+        if (existingItemIndex !== -1) {
+            if (selectedItems[existingItemIndex].quantity > 1) {
+                const updatedItems = selectedItems.map((item, index) => {
+                    if (index === existingItemIndex) {
+                        return { ...item, quantity: item.quantity - 1 };
+                    }
+                    return item;
+                });
+                setSelectedItems(updatedItems);
+            } else {
+                const updatedItems = selectedItems.filter((item, index) => index !== existingItemIndex);
+                setSelectedItems(updatedItems);
+            }
+        }
+    };
+
+    return (
+        <div className="selected-item">
+            <h3>{name}</h3>
+            <h3>{quantity}</h3>
+            <h3>{price}€</h3>
+            <button className="discard-button" onClick={handleRemoveFromCart}>
+                <img src="../src/assets/discard.png" alt="Remove"/>
+            </button>
+        </div>
     );
 }
 
