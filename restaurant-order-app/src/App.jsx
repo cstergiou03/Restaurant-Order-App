@@ -4,10 +4,7 @@ function App() {
 
   return (
     <>
-      <div className="side-container">
-
-      </div>
-      <main className="main-container">
+      <main>
           <FoodCard/>
       </main>
     </>

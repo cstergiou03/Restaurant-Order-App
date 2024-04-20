@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import "../Style/foodCard.css";
 import Cards from "./Cards";
 import Payment from "./Payment";
@@ -6,20 +6,20 @@ import Popup from 'reactjs-popup';
 
 function FoodCard(){
 
-    const foods = [
-        { name: 'Spaghetti', price: 6, path: '../src/assets/spaggeti.jpg' },
-        { name: 'Pizza', price: 8.5, path: '../src/assets/pizza.jpg' },
-        { name: 'Gyros', price: 4, path: '../src/assets/gyros.jpg' },
-        { name: 'Burger', price: 6.5, path: '../src/assets/burger.jpg' },
-        { name: 'Souvlaki', price: 1.8, path: '../src/assets/souvlakia.jpg' },
-    ];
-
+    const [foods, setFoods] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
     const [selectedItems, setSelectedItems] = useState([]);
     const [username, setUsername] = useState("Chris");
     const [surname, setSurname] = useState("Stergiou");
     const [address, setAddress] = useState("Trapezountos 1");
     const [phoneNumber, setPhoneNumber] = useState("6987748580");
+
+    useEffect(() => {
+        fetch('../foods.json')
+            .then(response => response.json())
+            .then(data => setFoods(data))
+            .catch(error => console.error('Error fetching foods:', error));
+    }, []);
 
     const filteredFoods = foods.filter(food => {
         return food.name.toLowerCase().includes(searchTerm.toLowerCase());
@@ -49,13 +49,15 @@ function FoodCard(){
                     modal nested>
                     {
                         close => (
-                            <div className='modal'>
-                                <h2 className='info-head'>Customer Info</h2>
-                                <input type="text" placeholder='Name' className='info' value={username} onChange={handleUsername}/>
-                                <input type="text" placeholder='Surname' className='info' value={surname} onChange={handleSurname}/>
-                                <input type="text" placeholder='Address' className='info' value={address} onChange={handleAddress}/>
-                                <input type="text" placeholder='Phone Number' className='info' maxLength={10} value={phoneNumber} onChange={handlePhoneNumber}/>
-                                <button className='info-button' onClick={() => close()}>Close</button>
+                            <div className='overlay'>
+                                <div className='modal'>
+                                    <h2 className='info-head'>Customer Info</h2>
+                                    <input type="text" placeholder='Name' className='info' value={username} onChange={handleUsername}/>
+                                    <input type="text" placeholder='Surname' className='info' value={surname} onChange={handleSurname}/>
+                                    <input type="text" placeholder='Address' className='info' value={address} onChange={handleAddress}/>
+                                    <input type="text" placeholder='Phone Number' className='info' maxLength={10} value={phoneNumber} onChange={handlePhoneNumber}/>
+                                    <button className='info-button' onClick={() => close()}>Close</button>
+                                </div>
                             </div>
                         )
                     }

@@ -9,7 +9,7 @@
     margin-top: 5em;
     margin-right: 2em;
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
     justify-content: flex-start;
     align-items: center;
 }
@@ -50,30 +50,26 @@
 }
 
 .selected-items-box {
+    height: 301px;
     max-height: 364px;
     overflow-y: auto;
     margin: 0.5em;
 }
 
-
-/* Καθορίζει το πλάτος του scroll bar */
 ::-webkit-scrollbar {
     width: 12px;
 }
   
-/* Καθορίζει το χρώμα του background του scroll bar */
 ::-webkit-scrollbar-track {
     background: #f1f1f100;
     border-radius: 8px;
 }
-  
-/* Καθορίζει το χρώμα της μπάρας του scroll bar */
+
 ::-webkit-scrollbar-thumb {
     background: hsl(0, 0%, 58%);
     border-radius: 8px;
 }
   
-/* Καθορίζει το χρώμα της μπάρας του scroll bar όταν γίνεται hover */
 ::-webkit-scrollbar-thumb:hover {
     background: hsl(0, 0%, 90%);
 }
@@ -89,5 +85,11 @@
 
 .order-head h2{
     color: aliceblue;
+}
+
+.delivery-gif{
+    width: 260px;
+    height: 180px;
+    border-radius: 18px;
 }
   

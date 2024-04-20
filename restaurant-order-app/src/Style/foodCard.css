@@ -1,6 +1,8 @@
+
 .foodCard-container{
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
 }
 
 .top-container{
@@ -15,6 +17,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    max-height: fit-content;
 }
 
 .cards-container{
@@ -63,10 +66,12 @@
     justify-content: center;
     align-items: center;
     width: 300px;
-    height: 290px;
+    height: 310px;
     background-color: hsl(230, 20%, 15%);
+    border: 2px solid rgb(61, 61, 82);
     padding: 10px;
     border-radius: 18px;
+    z-index: 10000;
 }
 
 .info{
@@ -100,4 +105,17 @@
     color: aliceblue;
     font-weight: bold;
     font-size: 1.5rem;
+}
+
+.overlay{
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); 
+    z-index: 9999;
 }
