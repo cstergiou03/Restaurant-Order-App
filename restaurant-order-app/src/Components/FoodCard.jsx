@@ -15,11 +15,20 @@ function FoodCard(){
     const [phoneNumber, setPhoneNumber] = useState("6987748580");
 
     useEffect(() => {
-        fetch('../foods.json')
-            .then(response => response.json())
-            .then(data => setFoods(data))
-            .catch(error => console.error('Error fetching foods:', error));
-    }, []);
+        fetch('http://localhost:3000/api/foods')
+        .then(response => {
+            if (!response.ok) {
+            throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            setFoods(data);
+        })
+        .catch(error => {
+            console.error('There was a problem with the fetch operation:', error);
+        });
+    }, [])
 
     const filteredFoods = foods.filter(food => {
         return food.name.toLowerCase().includes(searchTerm.toLowerCase());
@@ -77,7 +86,7 @@ function FoodCard(){
                             key={index} 
                             name={food.name} 
                             price={food.price} 
-                            path={food.path}
+                            photo={food.photo}
                             selectedItems={selectedItems} 
                             setSelectedItems={setSelectedItems}
                         />
@@ -85,8 +94,9 @@ function FoodCard(){
                 </div>
                 <div className="payment-container">
                     <Payment 
-                        selectedItems={selectedItems}
-                        setSelectedItems={setSelectedItems}
+                        cartItems={selectedItems}
+                        setCartItems={setSelectedItems}
+                        address={address}
                     />
                 </div>
             </div>

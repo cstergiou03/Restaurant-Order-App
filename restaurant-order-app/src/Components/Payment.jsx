@@ -1,16 +1,49 @@
 import "../Style/payment.css"
 import SelectedFood from "./SelectedFood";
-import Popup from 'reactjs-popup';
 
-function Payments({ selectedItems, setSelectedItems }){
+function Payments({ cartItems, setCartItems , address}){
 
     const calculateTotalCost = () => {
-        return selectedItems.reduce((total, item) => total + item.price * item.quantity, 0);
+        return cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
     };
 
-    function placeOrder(){
-        setSelectedItems([]);
+    function placeOrder() {
+        if(cartItems.length === 0){
+            alert("Nothing inside cart. Please add items to your cart before placing an order.");
+        } else {
+            const formattedItems = cartItems.map(item => ({
+                name: item.name,
+                quantity: item.quantity
+            })); 
+            const orderData = {
+                items: formattedItems,
+                total_price: calculateTotalCost(),
+                address: address,
+                order_date: new Date().toISOString().split('T')[0]
+            };
+
+            fetch('http://localhost:3000/api/undoneOrders', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json',},
+                body: JSON.stringify(orderData),
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Order placed successfully:', data);
+                setCartItems([]);
+            })
+            .catch(error => {
+                console.error('There was a problem with the fetch operation:', error);
+                alert('Failed to place order');
+            });
+        }
     }
+    
 
     return(
         <div className="order-box">
@@ -18,33 +51,19 @@ function Payments({ selectedItems, setSelectedItems }){
                 <h2>Your Order</h2>
             </div>
             <div className="selected-items-box">
-                {selectedItems.map((selectedItem, index) => (
+                {cartItems.map((selectedItem, index) => (
                     <SelectedFood 
                         key={index} 
                         name={selectedItem.name} 
                         quantity={selectedItem.quantity}
                         price={selectedItem.price} 
-                        selectedItems={selectedItems} 
-                        setSelectedItems={setSelectedItems}
+                        selectedItems={cartItems} 
+                        setSelectedItems={setCartItems}
                         />
                 ))}
             </div>
             <div className="place-order">
-                <Popup className="popup" trigger=
-                    {<button className="order-button" onClick={placeOrder}>Place Order</button>} 
-                    modal nested>
-                    {
-                        close => (
-                            <div className='overlay'>
-                                <div className='modal'>
-                                    <img src="../src/assets/delivery.gif" className="delivery-gif"/>
-                                    <h2 className="info-head">Your order is coming...🥳</h2>
-                                    <button className='info-button' onClick={() => close()}>Close</button>
-                                </div>
-                            </div>
-                        )
-                    }
-                </Popup>  
+            <button className="order-button" onClick={placeOrder}>Place Order</button>
                 <h3 className="total-price">Total Price: {calculateTotalCost()}€</h3>
             </div>
         </div>

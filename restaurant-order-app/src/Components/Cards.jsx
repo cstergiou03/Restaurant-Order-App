@@ -2,6 +2,8 @@ import "../Style/cards.css";
 
 function Cards(props) {
 
+    console.log(props.photo);
+
     const handleAddToCart = () => {
         const { name, price, selectedItems, setSelectedItems } = props;
 
@@ -20,9 +22,10 @@ function Cards(props) {
         }
     };
 
+
     return (
         <div className="card-container">
-            <img src={props.path} className="food-img" alt={props.name} />
+            <img src={props.photo} className="food-img" alt={props.name} />
             <h3>{props.name}</h3>
             <h4>{props.price}€</h4>
             <button className="addToCard-button" onClick={handleAddToCart}>Add to cart</button>
